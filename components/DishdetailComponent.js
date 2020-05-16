@@ -80,7 +80,7 @@ render(){
           <RenderComments comments={this.state.comments.filter((comment) => comment.dishId === dishId)} />
           </ScrollView>
       );
-}
+}b
 }
 
 export default Dishdetail;
