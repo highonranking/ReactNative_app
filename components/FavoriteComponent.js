@@ -1,6 +1,6 @@
 //jshint esversion:6
 import React, { Component } from 'react';
-import { FlatList, View, Text } from 'react-native';
+import { FlatList, View, Text, Alert } from 'react-native';
 import { ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { Loading } from './LoadingComponent';
@@ -29,11 +29,29 @@ class Favorites extends Component {
 
         const renderMenuItem = ({item, index}) => {
           const rightButton = [
-                          {
-                              text: 'Delete',
-                              type: 'delete',
-                              onPress: () => this.props.deleteFavorite(item.id)
-                          }
+            {
+         text: 'Delete',
+         type: 'delete',
+         onPress: () => {
+             Alert.alert(
+                 'Delete Favorite?',
+                 'Are you sure you wish to delete the favorite dish ' + item.name + '?',
+                 [
+                     {
+                         text: 'Cancel',
+                         onPress: () => console.log(item.name + 'Not Deleted'),
+                         style: ' cancel'
+                     },
+                     {
+                         text: 'OK',
+                         onPress: () => this.props.deleteFavorite(item.id)
+                     }
+                 ],
+                 { cancelable: false }
+             );
+
+         }
+     }
                       ];
 
                       return (
