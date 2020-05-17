@@ -4,6 +4,8 @@ import { Text, View, FlatList, ScrollView } from 'react-native';
 import { Card, ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
+import { Loading } from './LoadingComponent';
+
 
 
 const mapStateToProps = state => {
@@ -31,6 +33,7 @@ class AboutUs extends Component{
         title: 'About Us'
     };
     render() {
+        const{ navigate } = this.props.navigation;
         const renderLeaders = ({ item, index }) => {
             return(
                 <ListItem
@@ -40,9 +43,33 @@ class AboutUs extends Component{
                     hideChevron = {true}
                     leftAvatar={{ source: {uri: baseUrl + item.image}}}
                 />
-            )
+            );
+        };
+
+        if (this.props.leaders.isLoading){
+          return(
+            <ScrollView>
+                   <History />
+                   <Card
+                       title='Corporate Leadership'>
+                       <Loading />
+                   </Card>
+               </ScrollView>
+          );
         }
-        const{ navigate } = this.props.navigation;
+        else if (this.props.leaders.errMess) {
+          return(
+            <ScrollView>
+                   <History />
+                   <Card
+                       title='Corporate Leadership'>
+                       <Text>{this.props.leaders.errMess}</Text>
+                   </Card>
+               </ScrollView>
+          );
+        }
+      else
+      {
         return(
             <ScrollView>
                 <Card title = "Our History">
@@ -57,6 +84,8 @@ class AboutUs extends Component{
                 </Card>
             </ScrollView>
         );
+      }
+
     }
 }
 export default connect(mapStateToProps)(AboutUs);
