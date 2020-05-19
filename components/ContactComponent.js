@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
 import { Text, View, FlatList } from 'react-native';
-import { Card } from 'react-native-elements';
+import { Card, Button, Icon } from 'react-native-elements';
 import * as Animatable from 'react-native-animatable';
+import { MailComposer } from 'expo';
 
 class ContactUs extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-        };
-    }
-
+  sendMail() {
+       MailComposer.composeAsync({
+           recipients: ['confusion@food.net'],
+           subject: 'Enquiry',
+           body: 'To whom it may concern:'
+       })
+   }
+   
     static navigationOptions = {
         title: 'Contact Us'
     }
