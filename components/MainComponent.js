@@ -137,9 +137,8 @@ const AboutNavigator = createStackNavigator({
              onPress={ () => navigation.navigate('DrawerToggle') } />
          })
        });
-
        const LoginNavigator = createStackNavigator({
-             Login: { screen: Login }
+             Login: Login
            }, {
            navigationOptions: ({ navigation }) => ({
              headerStyle: {
@@ -148,12 +147,14 @@ const AboutNavigator = createStackNavigator({
              headerTitleStyle: {
                  color: "#fff"
              },
+             title: 'Login',
              headerTintColor: "#fff",
              headerLeft: <Icon name="menu" size={24}
                iconStyle={{ color: 'white' }}
                onPress={ () => navigation.toggleDrawer() } />
            })
          });
+
  const CustomDrawerContentComponent = (props) => (
    <ScrollView>
       <SafeAreaView style={styles.container}
