@@ -12,7 +12,7 @@ class ContactUs extends Component {
            body: 'To whom it may concern:'
        })
    }
-   
+
     static navigationOptions = {
         title: 'Contact Us'
     }
@@ -39,6 +39,12 @@ class ContactUs extends Component {
                     <Text style = {{margin: 10}}>
                         Email:confusion@food.net
                     </Text>
+                    <Button
+                        title="Send Email"
+                        buttonStyle={{backgroundColor: "#512DA8"}}
+                        icon={<Icon name='envelope-o' type='font-awesome' color='white' />}
+                        onPress={this.sendMail}
+                        />
                 </Card>
                 </Animatable.View>
         );
