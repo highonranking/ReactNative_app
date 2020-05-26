@@ -1,3 +1,4 @@
+//jshint esversion:6
 import {createStore, combineReducers, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
